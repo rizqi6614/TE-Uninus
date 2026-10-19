@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakultas Teknik - Universitas Islam Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Palette - Biru dan Putih */
+        body.faculty-theme {
+            --primary-blue: #0f2d52;
+            --secondary-blue: #5a8fd8;
+            --light-blue: #e3f2fd;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-gray: #4c5d73;
+            background: #f8f9fa;
+        }
+
+        /* Navbar Styling */
+        .faculty-theme .navbar {
+            background: #0f2d52 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+            padding: 15px 0;
+            transition: all 0.3s;
+        }
+
+        .faculty-theme .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .faculty-theme .nav-brand,
+        .faculty-theme .nav-link {
+            color: #ffffff;
+            text-shadow: none;
+        }
+
+        .faculty-theme .nav-brand,
+        .faculty-theme .nav-link {
+            color: #ffffff;
+        }
+
+        .faculty-theme .nav-link::after {
+            background: #5a8fd8;
+        }
+
+        .faculty-theme .nav-link:hover,
+        .faculty-theme .nav-link.active {
+            color: #5a8fd8;
+        }
+
+        .faculty-theme .hamburger span {
+            background: #ffffff;
+        }
+
+        .nav-logo-fallback {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-right: 10px;
+        }
+
+        /* Hero Carousel Styling */
+        .hero-carousel {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            margin-top: 0;
+            background: #000;
+        }
+
+        .carousel-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @keyframes zoomSlow {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        .carousel-slide.active::before {
+            animation: zoomSlow 6s ease-in-out infinite alternate;
+        }
+
+        /* Update background positioning for perfection */
+        .carousel-slide {
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 45, 82, 0.7), rgba(90, 143, 216, 0.5));
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .carousel-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .carousel-nav.prev {
+            left: 30px;
+        }
+
+        .carousel-nav.next {
+            right: 30px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('images/images-wisuda-2024.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .welcome-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .welcome-text p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* PMB Information Section */
+        .pmb-section {
+            padding: 80px 20px;
+            background: url('images/images-images-finalis-2025.jpeg') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .pmb-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 45, 82, 0.85);
+            z-index: 0;
+        }
+
+        .pmb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .pmb-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .pmb-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .pmb-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .pmb-card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .pmb-card:hover .pmb-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .pmb-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .pmb-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .news-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/images-wisuda-2024.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .news-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-card-image img {
+            transform: scale(1.1);
+        }
+
+        .news-card-content {
+            padding: 1.5rem;
+        }
+
+        .news-card-date {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h4 {
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Footer Section - Contact & Announcement */
+        .footer-section {
+            padding: 40px 20px;
+            /* Reduced padding */
+            background: linear-gradient(135deg, var(--primary-blue), #1c3f6e);
+            color: white;
+            font-size: 0.9rem;
+            /* Slightly smaller text */
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-blue);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+            margin-top: 5px;
+        }
+
+        .contact-item div {
+            flex: 1;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p,
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .announcement-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-blue);
+            transition: all 0.3s;
+        }
+
+        .announcement-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .announcement-date {
+            font-size: 0.85rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .announcement-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .announcement-item p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pmb-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-carousel {
+                height: 50vh;
+            }
+
+            .carousel-content h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-content p {
+                font-size: 1rem;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .carousel-nav.prev {
+                left: 10px;
+            }
+
+            .carousel-nav.next {
+                right: 10px;
+            }
+
+            .welcome-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .welcome-image {
+                order: -1;
+            }
+
+            .welcome-image img {
+                height: 300px;
+            }
+
+            .pmb-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .section-title,
+            .news-title {
+                font-size: 2rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            border-radius: 8px;
+            padding: 10px 0;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: background 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-item:hover {
+            background: #f4f6fb;
+            color: var(--secondary-blue);
+        }
+
+        .nav-link i {
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body class="faculty-theme">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-university nav-logo-fallback"></i>
+                <span>Teknik Elektro UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="#profil" class="nav-link">Profil <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="visimisi.html" class="dropdown-item">Visi Misi</a>
+                        <a href="struktur.html" class="dropdown-item">Struktur Organisasi</a>
+                        <a href="fasilitas.html" class="dropdown-item">Fasilitas</a>
+                        <a href="akreditasi.html" class="dropdown-item">Akreditasi</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#penelitian" class="nav-link">Penelitian & Pengabdian <i
+                            class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="jurnal.html" class="dropdown-item">Jurnal</a>
+                        <a href="hki.html" class="dropdown-item">HKI/Paten</a>
+                        <a href="pengabdian.html" class="dropdown-item">Pengabdian</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#program" class="nav-link">Program <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profil_lulusan.html" class="dropdown-item">Profil Lulusan</a>
+                        <a href="capaian_pembelajaran.html" class="dropdown-item">Capaian Pembelajaran</a>
+                        <a href="kurikulum.html" class="dropdown-item">Kurikulum</a>
+                        <a href="akademik.html" class="dropdown-item">Akademik</a>
+                    </div>
+                </li>
+                <li><a href="prestasi.html" class="nav-link">Prestasi</a></li>
+                <li><a href="#pmb" class="nav-link">Informasi PMB</a></li>
+                <li><a href="hme.html" class="nav-link">HME UNINUS</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-slides">
+            <div class="carousel-slide active" style="background-image: url('images/images-wisuda-2024.jpeg');">
+                <div class="carousel-content">
+                    <h1>Teknik Elektro UNINUS</h1>
+                    <p>Menghasilkan Insan Teknik yang Berkarakter, Berkompeten, dan Berdaya Saing</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/engineering-lab.png');">
+                <div class="carousel-content">
+                    <h1>Keunggulan Riset & Teknologi</h1>
+                    <p>Fasilitas Laboratorium Modern untuk Mendukung Inovasi Mahasiswa</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/images-images-finalis-2025.jpeg');">
+                <div class="carousel-content">
+                    <h1>Program Studi Unggulan</h1>
+                    <p>Kurikulum Terdepan yang Relevan dengan Kebutuhan Industri Global</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/electronics-project.png');">
+                <div class="carousel-content">
+                    <h1>Inovasi Tanpa Batas</h1>
+                    <p>Mengembangkan Proyek Elektronika Canggih untuk Solusi Masa Depan</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/campus-building.png');">
+                <div class="carousel-content">
+                    <h1>Lingkungan Kampus Modern</h1>
+                    <p>Suasana Belajar yang Nyaman dan Inspiratif di Jantung Kota Bandung</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-indicators">
+            <!-- Ensuring all 5 slides have indicators -->
+            <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section id="selamat-datang" class="welcome-section">
+        <div class="welcome-container">
+            <div class="welcome-text">
+                <h2>Selamat Datang</h2>
+                <p>
+                    Fakultas Teknik Universitas Islam Nusantara merupakan salah satu fakultas unggulan yang
+                    berkomitmen menghasilkan lulusan berkualitas di bidang teknik. Dengan kurikulum yang
+                    senantiasa diperbarui sesuai kebutuhan industri dan dilengkapi fasilitas modern,
+                    kami mempersiapkan mahasiswa untuk menjadi insan teknik yang kompeten dan berkarakter.
+                </p>
+                <p>
+                    Kami memiliki berbagai program studi yang telah terakreditasi dengan baik, didukung
+                    oleh dosen berpengalaman dan lingkungan belajar yang kondusif untuk pengembangan
+                    potensi akademik maupun non-akademik mahasiswa.
+                </p>
+            </div>
+            <div class="welcome-image">
+                <img src="images/images-wisuda-2024.jpeg" alt="Fakultas Teknik UNINUS"
+                    onerror="this.style.display='none';">
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan & Informasi PMB Section -->
+    <section id="keunggulan" class="pmb-section">
+        <div class="pmb-container">
+            <h2 class="section-title">Keunggulan Teknik Elektro</h2>
+
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; color: white;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    Bergabunglah dengan Fakultas Teknik UNINUS dan jadilah bagian dari inovasi masa depan.
+                    Kami menawarkan pendidikan berkualitas tinggi dengan pendekatan praktis dan dukungan fasilitas
+                    modern.
+                </p>
+                <a href="#" class="btn-daftar" style="
+                    display: inline-block;
+                    padding: 15px 40px;
+                    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                    border-radius: 50px;
+                    font-size: 1.2rem;
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                    transition: transform 0.3s, box-shadow 0.3s;
+                " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.2)'">
+                    Daftar Sekarang <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                </a>
+            </div>
+
+            <div class="pmb-grid">
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Kurikulum</h3>
+                    <p>Kurikulum terintegrasi yang dirancang sesuai kebutuhan industri dengan porsi teori dan praktik
+                        yang seimbang untuk menghasilkan lulusan siap kerja.</p>
+                </div>
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Penelitian & Pengabdian</h3>
+                    <p>Program penelitian dan pengabdian masyarakat yang melibatkan dosen dan mahasiswa untuk memberikan
+                        kontribusi nyata bagi kemajuan bangsa.</p>
+                </div>
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Prestasi</h3>
+                    <p>Mahasiswa dan alumni telah meraih berbagai prestasi di tingkat nasional dan internasional,
+                        membuktikan kualitas pendidikan yang kami berikan.</p>
+                </div>
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Kemitraan</h3>
+                    <p>Kerjasama strategis dengan berbagai industri, instansi, dan lembaga untuk memastikan lulusan
+                        memiliki koneksi dan peluang karir yang luas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section Template -->
+    <section id="berita" class="news-section" style="padding: 60px 20px; background: #f8f9fa;">
+        <div class="news-container">
+            <h2 class="section-title" style="text-align: center; color: var(--primary-blue); margin-bottom: 40px;">
+                Berita Terkini</h2>
+            <div class="news-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+                <!-- News Item 1 -->
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/images-wisuda-2024.jpeg" alt="Wisuda 2024"
+                            onerror="this.src='https://via.placeholder.com/400x250?text=Berita+1'">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar-alt"></i> 15 Desember 2024</div>
+                        <h4>Wisuda Sarjana Teknik Gelombang II Tahun 2024</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">Fakultas Teknik kembali meluluskan
+                            150 sarjana baru yang siap berkontribusi untuk negeri...</p>
+                        <a href="#"
+                            style="color: var(--secondary-blue); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Baca
+                            Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/images-images-finalis-2025.jpeg" alt="Finalis Lomba"
+                            onerror="this.src='https://via.placeholder.com/400x250?text=Berita+2'">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar-alt"></i> 10 Desember 2024</div>
+                        <h4>Tim Robotika UNINUS Raih Juara Harapan 1 Nasional</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">Prestasi membanggakan kembali
+                            diraih oleh Tim Robotika dalam ajang Kontes Robot Indonesia...</p>
+                        <a href="#"
+                            style="color: var(--secondary-blue); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Baca
+                            Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- News Item 3 -->
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/engineering-lab.png" alt="Lab Baru"
+                            onerror="this.src='https://via.placeholder.com/400x250?text=Berita+3'">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar-alt"></i> 01 Desember 2024</div>
+                        <h4>Wisudawan</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.5;">Dekan Fakultas Teknik meresmikan
+                            laboratorium baru untuk menunjang praktikum simulasi...</p>
+                        <a href="#"
+                            style="color: var(--secondary-blue); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Baca
+                            Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#"
+                    style="background: var(--primary-blue); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; transition: 0.3s;">Lihat
+                    Berita Lainnya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section - Contact & Announcement -->
+    <section class="footer-section">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Alamat</strong>
+                        <p>Jl. Soekarno Hatta No. 530, Sekejati, Buahbatu, Bandung, Jawa Barat 40286</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <a href="mailto:fakultasteknik@uninus.ac.id">fakultasteknik@uninus.ac.id</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Telepon</strong>
+                        <a href="tel:+62227579362">(022) 7579362</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Pengumuman</h3>
+                <div class="announcement-item">
+                    <div class="announcement-date"><i class="fas fa-calendar"></i> 20 Desember 2024</div>
+                    <h4>Pendaftaran Mahasiswa Baru 2025</h4>
+                    <p>Pendaftaran mahasiswa baru untuk tahun akademik 2025/2026 telah dibuka. Segera daftarkan diri
+                        Anda.</p>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-date"><i class="fas fa-calendar"></i> 18 Desember 2024</div>
+                    <h4>Seminar Teknologi 2024</h4>
+                    <p>Fakultas Teknik akan mengadakan seminar teknologi dengan tema "Inovasi Teknologi untuk Masa
+                        Depan".</p>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-date"><i class="fas fa-calendar"></i> 15 Desember 2024</div>
+                    <h4>Pengumuman Kelulusan</h4>
+                    <p>Pengumuman kelulusan semester ganjil 2024/2025 akan diumumkan pada tanggal 20 Desember 2024.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright Footer -->
+    <footer
+        style="background: #1c3f6e; padding: 20px 0; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <p>&copy; 2025 Fakultas Teknik UNINUS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script>
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Ensure index is within bounds
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            // Add active class to current slide and indicator
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-play carousel
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Initialize carousel
+        showSlide(0);
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.pmb-card, .news-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

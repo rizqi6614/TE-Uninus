@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurikulum - Teknik Elektro UNINUS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .navbar {
+            background: #0f2d52;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #5a8fd8;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #0f2d52 0%, #1c3f6e 100%);
+            color: white;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .page-content {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .semester-block {
+            margin-bottom: 40px;
+        }
+
+        .semester-title {
+            font-size: 1.5rem;
+            color: #0f2d52;
+            border-bottom: 2px solid #5a8fd8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .course-table th,
+        .course-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-table th {
+            background: #f4f6fb;
+            color: #0f2d52;
+            font-weight: 600;
+        }
+
+        .course-table tr:hover {
+            background: #fafafa;
+        }
+
+        .sks-badge {
+            background: #e3f2fd;
+            color: #0f2d52;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #1c3f6e;
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-university"></i>
+                <span>Teknik Elektro UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Kembali ke Beranda</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="page-header">
+        <h1>Kurikulum</h1>
+        <p>Sebaran Mata Kuliah per Semester</p>
+    </header>
+    <section class="page-content">
+
+        <div class="semester-block">
+            <h3 class="semester-title">Semester 1</h3>
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Mata Kuliah</th>
+                        <th>SKS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UN101</td>
+                        <td>Pendidikan Agama Islam</td>
+                        <td><span class="sks-badge">2 SKS</span></td>
+                    </tr>
+                    <tr>
+                        <td>TE101</td>
+                        <td>Fisika Dasar I</td>
+                        <td><span class="sks-badge">3 SKS</span></td>
+                    </tr>
+                    <tr>
+                        <td>TE102</td>
+                        <td>Kalkulus I</td>
+                        <td><span class="sks-badge">3 SKS</span></td>
+                    </tr>
+                    <tr>
+                        <td>TE103</td>
+                        <td>Pengantar Teknik Elektro</td>
+                        <td><span class="sks-badge">2 SKS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="semester-block">
+            <h3 class="semester-title">Semester 2</h3>
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Mata Kuliah</th>
+                        <th>SKS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TE201</td>
+                        <td>Fisika Dasar II</td>
+                        <td><span class="sks-badge">3 SKS</span></td>
+                    </tr>
+                    <tr>
+                        <td>TE202</td>
+                        <td>Kalkulus II</td>
+                        <td><span class="sks-badge">3 SKS</span></td>
+                    </tr>
+                    <tr>
+                        <td>TE203</td>
+                        <td>Dasar Pemrograman Komputer</td>
+                        <td><span class="sks-badge">3 SKS</span></td>
+                    </tr>
+                    <tr>
+                        <td>TE204</td>
+                        <td>Rangkaian Listrik I</td>
+                        <td><span class="sks-badge">3 SKS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add more semesters as needed -->
+        <p style="text-align: center; color: #777; margin-top: 40px;"><em>... Daftar mata kuliah lengkap tersedia di
+                Buku Pedoman Akademik ...</em></p>
+
+    </section>
+    <footer>
+        <div class="container" style="justify-content: center;">
+            <p>&copy; 2025 Fakultas Teknik UNINUS. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HME News - Himpunan Mahasiswa Elektro UNINUS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .news-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 213, 79, 0.4), rgba(255, 193, 7, 0.4));
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .news-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .news-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 20px;
+        }
+
+        .news-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--dark-card);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: circuitMove 20s linear infinite;
+        }
+
+        .news-card-content {
+            padding: 1.5rem;
+        }
+
+        .news-card-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--primary-color);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .news-card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .news-card-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-card-excerpt {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .news-card-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .news-card-link:hover {
+            gap: 1rem;
+        }
+
+        .news-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .pagination-btn {
+            padding: 10px 20px;
+            background: var(--dark-card);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        .news-card.academic .news-card-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .news-card.scholarship .news-card-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .news-card.event .news-card-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .news-card.general .news-card-image {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo-hme.png" alt="HME UNINUS Logo" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <i class="fas fa-microchip nav-logo-fallback" style="display: none;"></i>
+                <span>HME UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Teknik Elektro</a></li>
+                <li><a href="hme.html" class="nav-link">HME UNINUS</a></li>
+                <li><a href="hme.html#profile" class="nav-link">Profil</a></li>
+                <li><a href="hme.html#about" class="nav-link">Tentang</a></li>
+                <li><a href="library.html" class="nav-link">Perpustakaan</a></li>
+                <li><a href="news.html" class="nav-link active">HME News</a></li>
+                <li><a href="hme.html#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Hero -->
+    <section class="news-hero">
+        <div class="news-hero-content">
+            <h1><i class="fas fa-newspaper"></i> HME News</h1>
+            <p class="subtitle">Informasi Terkini Seputar Akademik, Beasiswa, dan Kegiatan HME</p>
+        </div>
+    </section>
+
+    <!-- News Content -->
+    <section class="news-container">
+        <div class="news-filters">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="academic">Akademik</button>
+            <button class="filter-btn" data-filter="scholarship">Beasiswa</button>
+            <button class="filter-btn" data-filter="event">Kegiatan</button>
+            <button class="filter-btn" data-filter="general">Umum</button>
+        </div>
+
+        <div class="news-grid" id="newsGrid">
+            <!-- Academic News -->
+            <article class="news-card academic" data-category="academic">
+                <div class="news-card-image">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Akademik</span>
+                    <h3 class="news-card-title">Pendaftaran Ujian Tengah Semester Genap 2024</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>15 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">Pendaftaran UTS untuk semester genap 2024 telah dibuka. Segera daftarkan diri Anda melalui portal akademik...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="news-card academic" data-category="academic">
+                <div class="news-card-image">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Akademik</span>
+                    <h3 class="news-card-title">Workshop Pemrograman Embedded Systems</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>20 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">HME akan mengadakan workshop pemrograman embedded systems menggunakan Arduino dan ESP32. Daftar sekarang!</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Scholarship News -->
+            <article class="news-card scholarship" data-category="scholarship">
+                <div class="news-card-image">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Beasiswa</span>
+                    <h3 class="news-card-title">Beasiswa Prestasi Akademik 2024</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>10 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">Pendaftaran beasiswa prestasi akademik untuk mahasiswa aktif telah dibuka. Persyaratan dan formulir dapat diunduh...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="news-card scholarship" data-category="scholarship">
+                <div class="news-card-image">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Beasiswa</span>
+                    <h3 class="news-card-title">Beasiswa KIP Kuliah 2024 - Pendaftaran Dibuka</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>5 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">Program Indonesia Pintar (KIP) Kuliah kembali dibuka untuk semester genap 2024. Segera daftarkan diri Anda...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Event News -->
+            <article class="news-card event" data-category="event">
+                <div class="news-card-image">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Kegiatan</span>
+                    <h3 class="news-card-title">HME Tech Expo 2024 - Pameran Teknologi Elektro</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>25 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">HME akan mengadakan pameran teknologi elektro yang menampilkan berbagai inovasi dan proyek mahasiswa...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="news-card event" data-category="event">
+                <div class="news-card-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Kegiatan</span>
+                    <h3 class="news-card-title">Kunjungan Industri ke PT. Telkom Indonesia</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>30 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">HME akan mengadakan kunjungan industri ke PT. Telkom Indonesia untuk melihat langsung proses kerja di industri...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- General News -->
+            <article class="news-card general" data-category="general">
+                <div class="news-card-image">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Umum</span>
+                    <h3 class="news-card-title">Pengumuman Rapat Anggota HME Bulanan</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>12 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">Rapat anggota bulanan HME akan dilaksanakan pada tanggal 20 Maret 2024. Semua anggota diharapkan hadir...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="news-card academic" data-category="academic">
+                <div class="news-card-image">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Akademik</span>
+                    <h3 class="news-card-title">Seminar IoT dan Smart City Development</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>18 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">Seminar tentang perkembangan IoT dan implementasinya dalam smart city akan diadakan dengan pembicara dari industri...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="news-card scholarship" data-category="scholarship">
+                <div class="news-card-image">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="news-card-content">
+                    <span class="news-card-category">Beasiswa</span>
+                    <h3 class="news-card-title">Beasiswa Pertukaran Mahasiswa ke Luar Negeri</h3>
+                    <div class="news-card-date">
+                        <i class="far fa-calendar"></i>
+                        <span>8 Maret 2024</span>
+                    </div>
+                    <p class="news-card-excerpt">Program pertukaran mahasiswa ke universitas mitra di luar negeri kembali dibuka. Peluang emas untuk pengalaman internasional...</p>
+                    <a href="#" class="news-card-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+
+        <div class="news-pagination">
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HME UNINUS</h3>
+                    <p>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Teknik Elektro</a></li>
+                        <li><a href="hme.html">HME UNINUS</a></li>
+                        <li><a href="hme.html#profile">Profil</a></li>
+                        <li><a href="hme.html#about">Tentang</a></li>
+                        <li><a href="library.html">Perpustakaan</a></li>
+                        <li><a href="news.html">HME News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@hmeuninus" target="_blank" title="HME UNINUS"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@hmeuninus" target="_blank" title="HME UNINUS"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/hmeuninusbandung" target="_blank" title="HME UNINUS BANDUNG"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/hmeuninusbandung" target="_blank" title="HME UNINUS BANDUNG"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HME UNINUS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // News filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                newsCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Initialize cards
+        newsCards.forEach(card => {
+            card.style.transition = 'all 0.3s ease';
+        });
+    </script>
+</body>
+</html>
+

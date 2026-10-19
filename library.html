@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Digital - HME UNINUS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .library-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 213, 79, 0.4), rgba(255, 193, 7, 0.4));
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .library-hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .library-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .library-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .library-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 20px;
+        }
+
+        .library-search {
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.5rem;
+            background: var(--dark-card);
+            border: 2px solid transparent;
+            border-radius: 30px;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .library-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background: var(--dark-card);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            border-color: var(--primary-color);
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .library-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .library-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .library-card:hover::before {
+            left: 100%;
+        }
+
+        .library-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .library-card-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .library-card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .library-card-description {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .library-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+
+        .library-card-link:hover {
+            gap: 1rem;
+        }
+
+        .library-card-link i {
+            transition: transform 0.3s;
+        }
+
+        .library-card-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .library-card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .library-tag {
+            padding: 5px 12px;
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .external-link-indicator {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo-hme.png" alt="HME UNINUS Logo" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <i class="fas fa-microchip nav-logo-fallback" style="display: none;"></i>
+                <span>HME UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Teknik Elektro</a></li>
+                <li><a href="hme.html" class="nav-link">HME UNINUS</a></li>
+                <li><a href="hme.html#profile" class="nav-link">Profil</a></li>
+                <li><a href="hme.html#about" class="nav-link">Tentang</a></li>
+                <li><a href="library.html" class="nav-link active">Perpustakaan</a></li>
+                <li><a href="news.html" class="nav-link">HME News</a></li>
+                <li><a href="hme.html#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Library Hero -->
+    <section class="library-hero">
+        <div class="library-hero-content">
+            <h1><i class="fas fa-book-open"></i> Perpustakaan Digital</h1>
+            <p class="subtitle">Koleksi Materi Pembelajaran dan Referensi Teknik Elektro</p>
+        </div>
+    </section>
+
+    <!-- Library Content -->
+    <section class="library-container">
+        <div class="library-search">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari materi, buku, atau referensi...">
+            </div>
+        </div>
+
+        <div class="library-categories">
+            <button class="category-btn active" data-category="all">Semua</button>
+            <button class="category-btn" data-category="books">Buku</button>
+            <button class="category-btn" data-category="tutorials">Tutorial</button>
+            <button class="category-btn" data-category="videos">Video</button>
+            <button class="category-btn" data-category="articles">Artikel</button>
+            <button class="category-btn" data-category="datasheets">Datasheet</button>
+            <button class="category-btn" data-category="software">Software</button>
+        </div>
+
+        <div class="library-grid" id="libraryGrid">
+            <!-- Books -->
+            <div class="library-card" data-category="books" data-title="Fundamentals of Electric Circuits">
+                <i class="fas fa-book library-card-icon"></i>
+                <h3 class="library-card-title">Fundamentals of Electric Circuits</h3>
+                <p class="library-card-description">Buku teks fundamental tentang rangkaian listrik dan elektronika dasar. Cocok untuk pemula dan mahasiswa tingkat awal.</p>
+                <a href="https://example.com/book1" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Rangkaian Listrik</span>
+                    <span class="library-tag">Dasar</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="books" data-title="Microelectronic Circuits">
+                <i class="fas fa-book library-card-icon"></i>
+                <h3 class="library-card-title">Microelectronic Circuits</h3>
+                <p class="library-card-description">Buku referensi lengkap tentang sirkuit mikroelektronika, termasuk analisis dan desain sirkuit terintegrasi.</p>
+                <a href="https://example.com/book2" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Mikroelektronika</span>
+                    <span class="library-tag">Sirkuit</span>
+                </div>
+            </div>
+
+            <!-- Tutorials -->
+            <div class="library-card" data-category="tutorials" data-title="Arduino Programming Tutorial">
+                <i class="fas fa-code library-card-icon"></i>
+                <h3 class="library-card-title">Arduino Programming Tutorial</h3>
+                <p class="library-card-description">Tutorial lengkap pemrograman Arduino dari dasar hingga advanced. Termasuk contoh proyek praktis.</p>
+                <a href="https://www.arduino.cc/en/Tutorial/HomePage" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Arduino</span>
+                    <span class="library-tag">Pemrograman</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="tutorials" data-title="ESP32 IoT Development Guide">
+                <i class="fas fa-wifi library-card-icon"></i>
+                <h3 class="library-card-title">ESP32 IoT Development Guide</h3>
+                <p class="library-card-description">Panduan lengkap pengembangan aplikasi IoT menggunakan ESP32. Termasuk koneksi WiFi dan sensor.</p>
+                <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">ESP32</span>
+                    <span class="library-tag">IoT</span>
+                </div>
+            </div>
+
+            <!-- Videos -->
+            <div class="library-card" data-category="videos" data-title="Digital Signal Processing Course">
+                <i class="fas fa-video library-card-icon"></i>
+                <h3 class="library-card-title">Digital Signal Processing Course</h3>
+                <p class="library-card-description">Video course lengkap tentang pengolahan sinyal digital. Cocok untuk mahasiswa tingkat menengah hingga lanjutan.</p>
+                <a href="https://www.youtube.com" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">DSP</span>
+                    <span class="library-tag">Video</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="videos" data-title="Robotics and Automation">
+                <i class="fas fa-robot library-card-icon"></i>
+                <h3 class="library-card-title">Robotics and Automation</h3>
+                <p class="library-card-description">Koleksi video pembelajaran tentang robotika dan otomasi. Termasuk kontrol motor, sensor, dan navigasi.</p>
+                <a href="https://www.youtube.com" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Robotika</span>
+                    <span class="library-tag">Otomasi</span>
+                </div>
+            </div>
+
+            <!-- Articles -->
+            <div class="library-card" data-category="articles" data-title="Power Electronics Fundamentals">
+                <i class="fas fa-file-alt library-card-icon"></i>
+                <h3 class="library-card-title">Power Electronics Fundamentals</h3>
+                <p class="library-card-description">Artikel komprehensif tentang dasar-dasar elektronika daya, termasuk converter, inverter, dan regulator.</p>
+                <a href="https://example.com/article1" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Power Electronics</span>
+                    <span class="library-tag">Artikel</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="articles" data-title="Machine Learning for Engineers">
+                <i class="fas fa-brain library-card-icon"></i>
+                <h3 class="library-card-title">Machine Learning for Engineers</h3>
+                <p class="library-card-description">Panduan penerapan machine learning dalam bidang teknik elektro. Termasuk contoh implementasi praktis.</p>
+                <a href="https://example.com/article2" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Machine Learning</span>
+                    <span class="library-tag">AI</span>
+                </div>
+            </div>
+
+            <!-- Datasheets -->
+            <div class="library-card" data-category="datasheets" data-title="Arduino Uno Datasheet">
+                <i class="fas fa-file-pdf library-card-icon"></i>
+                <h3 class="library-card-title">Arduino Uno Datasheet</h3>
+                <p class="library-card-description">Datasheet lengkap Arduino Uno R3. Termasuk spesifikasi teknis, pinout, dan karakteristik elektrikal.</p>
+                <a href="https://store.arduino.cc/products/arduino-uno-rev3" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Arduino</span>
+                    <span class="library-tag">Datasheet</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="datasheets" data-title="ESP32 Technical Reference">
+                <i class="fas fa-file-pdf library-card-icon"></i>
+                <h3 class="library-card-title">ESP32 Technical Reference</h3>
+                <p class="library-card-description">Dokumentasi teknis lengkap ESP32. Termasuk arsitektur, register, dan API reference.</p>
+                <a href="https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">ESP32</span>
+                    <span class="library-tag">Reference</span>
+                </div>
+            </div>
+
+            <!-- Software -->
+            <div class="library-card" data-category="software" data-title="MATLAB for Engineers">
+                <i class="fas fa-laptop-code library-card-icon"></i>
+                <h3 class="library-card-title">MATLAB for Engineers</h3>
+                <p class="library-card-description">Tutorial dan resources MATLAB untuk teknik elektro. Termasuk simulink, signal processing, dan control systems.</p>
+                <a href="https://www.mathworks.com/learn/tutorials/matlab-onramp.html" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">MATLAB</span>
+                    <span class="library-tag">Simulasi</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="software" data-title="KiCad PCB Design">
+                <i class="fas fa-microchip library-card-icon"></i>
+                <h3 class="library-card-title">KiCad PCB Design Tutorial</h3>
+                <p class="library-card-description">Panduan desain PCB menggunakan KiCad. Termasuk schematic capture, layout, dan gerber generation.</p>
+                <a href="https://www.kicad.org/learn/" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">PCB Design</span>
+                    <span class="library-tag">KiCad</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="books" data-title="Control Systems Engineering">
+                <i class="fas fa-book library-card-icon"></i>
+                <h3 class="library-card-title">Control Systems Engineering</h3>
+                <p class="library-card-description">Buku referensi tentang sistem kontrol. Mencakup analisis, desain, dan implementasi sistem kontrol modern.</p>
+                <a href="https://example.com/book3" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Control Systems</span>
+                    <span class="library-tag">Teori</span>
+                </div>
+            </div>
+
+            <div class="library-card" data-category="tutorials" data-title="Raspberry Pi Projects">
+                <i class="fas fa-desktop library-card-icon"></i>
+                <h3 class="library-card-title">Raspberry Pi Projects</h3>
+                <p class="library-card-description">Koleksi proyek Raspberry Pi untuk teknik elektro. Termasuk home automation, IoT, dan embedded systems.</p>
+                <a href="https://www.raspberrypi.org/projects/" target="_blank" class="library-card-link">
+                    Akses Link <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="library-card-tags">
+                    <span class="library-tag">Raspberry Pi</span>
+                    <span class="library-tag">Proyek</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HME UNINUS</h3>
+                    <p>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Teknik Elektro</a></li>
+                        <li><a href="hme.html">HME UNINUS</a></li>
+                        <li><a href="hme.html#profile">Profil</a></li>
+                        <li><a href="hme.html#about">Tentang</a></li>
+                        <li><a href="library.html">Perpustakaan</a></li>
+                        <li><a href="news.html">HME News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@hmeuninus" target="_blank" title="HME UNINUS"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@hmeuninus" target="_blank" title="HME UNINUS"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/hmeuninusbandung" target="_blank" title="HME UNINUS BANDUNG"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/hmeuninusbandung" target="_blank" title="HME UNINUS BANDUNG"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HME UNINUS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Library search functionality
+        const searchInput = document.getElementById('searchInput');
+        const libraryCards = document.querySelectorAll('.library-card');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            filterLibrary();
+        });
+
+        // Category filtering
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterLibrary();
+            });
+        });
+
+        function filterLibrary() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+
+            libraryCards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const category = card.getAttribute('data-category');
+                const matchesSearch = title.includes(searchTerm);
+                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Initialize cards
+        libraryCards.forEach(card => {
+            card.style.transition = 'all 0.3s ease';
+        });
+    </script>
+</body>
+</html>
+

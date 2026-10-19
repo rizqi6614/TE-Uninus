@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakultas Teknik - Universitas Islam Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Palette - Biru dan Putih */
+        body.faculty-theme {
+            --primary-blue: #0f2d52;
+            --secondary-blue: #5a8fd8;
+            --light-blue: #e3f2fd;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-gray: #4c5d73;
+            background: #f8f9fa;
+        }
+
+        /* Navbar Styling */
+        .faculty-theme .navbar {
+            background: #0f2d52 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+            padding: 15px 0;
+            transition: all 0.3s;
+        }
+
+        .faculty-theme .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .faculty-theme .nav-brand,
+        .faculty-theme .nav-link {
+            color: #ffffff;
+            text-shadow: none;
+        }
+
+        .faculty-theme .nav-brand,
+        .faculty-theme .nav-link {
+            color: #ffffff;
+        }
+
+        .faculty-theme .nav-link::after {
+            background: #5a8fd8;
+        }
+
+        .faculty-theme .nav-link:hover,
+        .faculty-theme .nav-link.active {
+            color: #5a8fd8;
+        }
+
+        .faculty-theme .hamburger span {
+            background: #ffffff;
+        }
+
+        .nav-logo-fallback {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-right: 10px;
+        }
+
+        /* Hero Carousel Section */
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .carousel-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        @keyframes zoomSlow {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        .carousel-slide.active::before {
+            animation: zoomSlow 6s ease-in-out infinite alternate;
+        }
+
+        /* Update background positioning for perfection */
+        .carousel-slide {
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 45, 82, 0.7), rgba(90, 143, 216, 0.5));
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .carousel-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .carousel-nav.prev {
+            left: 30px;
+        }
+
+        .carousel-nav.next {
+            right: 30px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('images/images-wisuda-2024.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .welcome-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .welcome-text p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* PMB Information Section */
+        .pmb-section {
+            padding: 80px 20px;
+            background: url('images/images-images-finalis-2025.jpeg') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .pmb-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 45, 82, 0.85);
+            z-index: 0;
+        }
+
+        .pmb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .pmb-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .pmb-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .pmb-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .pmb-card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .pmb-card:hover .pmb-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .pmb-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .pmb-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .news-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/images-wisuda-2024.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .news-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-card-image img {
+            transform: scale(1.1);
+        }
+
+        .news-card-content {
+            padding: 1.5rem;
+        }
+
+        .news-card-date {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h4 {
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Footer Section - Contact & Announcement */
+        .footer-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary-blue), #1c3f6e);
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-blue);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+            margin-top: 5px;
+        }
+
+        .contact-item div {
+            flex: 1;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p,
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .announcement-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-blue);
+            transition: all 0.3s;
+        }
+
+        .announcement-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .announcement-date {
+            font-size: 0.85rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .announcement-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .announcement-item p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pmb-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-carousel {
+                height: 50vh;
+            }
+
+            .carousel-content h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-content p {
+                font-size: 1rem;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .carousel-nav.prev {
+                left: 10px;
+            }
+
+            .carousel-nav.next {
+                right: 10px;
+            }
+
+            .welcome-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .welcome-image {
+                order: -1;
+            }
+
+            .welcome-image img {
+                height: 300px;
+            }
+
+            .pmb-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .section-title,
+            .news-title {
+                font-size: 2rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body class="faculty-theme">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-university nav-logo-fallback"></i>
+                <span>Teknik Elektro UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#selamat-datang" class="nav-link">Profil</a></li>
+                <li><a href="#keunggulan" class="nav-link">Penelitian & Pengabdian</a></li>
+                <li><a href="#keunggulan" class="nav-link">Program</a></li>
+                <li><a href="#keunggulan" class="nav-link">Prestasi</a></li>
+                <li><a href="#keunggulan" class="nav-link">Informasi PMB</a></li>
+                <li><a href="hme.html" class="nav-link">HME UNINUS</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-slides">
+            <div class="carousel-slide active" style="background-image: url('images/images-wisuda-2024.jpeg');">
+                <div class="carousel-content">
+                    <h1>Teknik Elektro UNINUS</h1>
+                    <p>Menghasilkan Insan Teknik yang Berkarakter, Berkompeten, dan Berdaya Saing</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/engineering-lab.png');">
+                <div class="carousel-content">
+                    <h1>Keunggulan Riset & Teknologi</h1>
+                    <p>Fasilitas Laboratorium Modern untuk Mendukung Inovasi Mahasiswa</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/images-images-finalis-2025.jpeg');">
+                <div class="carousel-content">
+                    <h1>Program Studi Unggulan</h1>
+                    <p>Kurikulum Terdepan yang Relevan dengan Kebutuhan Industri Global</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/electronics-project.png');">
+                <div class="carousel-content">
+                    <h1>Inovasi Tanpa Batas</h1>
+                    <p>Mengembangkan Proyek Elektronika Canggih untuk Solusi Masa Depan</p>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('images/campus-building.png');">
+                <div class="carousel-content">
+                    <h1>Lingkungan Kampus Modern</h1>
+                    <p>Suasana Belajar yang Nyaman dan Inspiratif di Jantung Kota Bandung</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-indicators">
+            <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section id="selamat-datang" class="welcome-section">
+        <div class="welcome-container">
+            <div class="welcome-text">
+                <h2>Selamat Datang</h2>
+                <p>
+                    Fakultas Teknik Universitas Islam Nusantara merupakan salah satu fakultas unggulan yang
+                    berkomitmen menghasilkan lulusan berkualitas di bidang teknik. Dengan kurikulum yang
+                    senantiasa diperbarui sesuai kebutuhan industri dan dilengkapi fasilitas modern,
+                    kami mempersiapkan mahasiswa untuk menjadi insan teknik yang kompeten dan berkarakter.
+                </p>
+                <p>
+                    Kami memiliki berbagai program studi yang telah terakreditasi dengan baik, didukung
+                    oleh dosen berpengalaman dan lingkungan belajar yang kondusif untuk pengembangan
+                    potensi akademik maupun non-akademik mahasiswa.
+                </p>
+            </div>
+            <div class="welcome-image">
+                <img src="images/images-wisuda-2024.jpeg" alt="Fakultas Teknik UNINUS"
+                    onerror="this.style.display='none';">
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan & Informasi PMB Section -->
+    <section id="keunggulan" class="pmb-section">
+        <div class="pmb-container">
+            <h2 class="section-title">Keunggulan Teknik Elektro</h2>
+
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; color: white;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    Bergabunglah dengan Fakultas Teknik UNINUS dan jadilah bagian dari inovasi masa depan.
+                    Kami menawarkan pendidikan berkualitas tinggi dengan pendekatan praktis dan dukungan fasilitas
+                    modern.
+                </p>
+                <a href="#" class="btn-daftar" style="
+                    display: inline-block;
+                    padding: 15px 40px;
+                    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                    border-radius: 50px;
+                    font-size: 1.2rem;
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                    transition: transform 0.3s, box-shadow 0.3s;
+                " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.3)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.2)'">
+                    Daftar Sekarang <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                </a>
+            </div>
+
+            <div class="pmb-grid">
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Kurikulum</h3>
+                    <p>Kurikulum terintegrasi yang dirancang sesuai kebutuhan industri dengan porsi teori dan praktik
+                        yang seimbang untuk menghasilkan lulusan siap kerja.</p>
+                </div>
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Penelitian & Pengabdian</h3>
+                    <p>Program penelitian dan pengabdian masyarakat yang melibatkan dosen dan mahasiswa untuk memberikan
+                        kontribusi nyata bagi kemajuan bangsa.</p>
+                </div>
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Prestasi</h3>
+                    <p>Mahasiswa dan alumni telah meraih berbagai prestasi di tingkat nasional dan internasional,
+                        membuktikan kualitas pendidikan yang kami berikan.</p>
+                </div>
+                <div class="pmb-card fade-in">
+                    <div class="pmb-card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Kemitraan</h3>
+                    <p>Kerjasama strategis dengan berbagai industri, instansi, dan lembaga untuk memastikan lulusan
+                        memiliki koneksi dan peluang karir yang luas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="berita" class="news-section">
+        <div class="news-container">
+            <h2 class="news-title">Berita Teknik</h2>
+            <div class="news-grid">
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/images-wisuda-2024.jpeg" alt="Wisuda Sarjana Teknik 2024"
+                            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f2d52, #5a8fd8)';">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar"></i> 15 Desember 2024</div>
+                        <h4>Wisuda Sarjana Teknik 2024</h4>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/images-images-finalis-2025.jpeg" alt="Mahasiswa Finalis Kompetisi Nasional"
+                            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f2d52, #5a8fd8)';">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar"></i> 10 Desember 2024</div>
+                        <h4>Mahasiswa Juara Kompetisi Nasional</h4>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/images-wisuda-2024.jpeg" alt="Kerjasama dengan Industri"
+                            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f2d52, #5a8fd8)';">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar"></i> 5 Desember 2024</div>
+                        <h4>Kerjasama dengan Industri</h4>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-card-image">
+                        <img src="images/images-images-finalis-2025.jpeg" alt="Pembukaan Laboratorium Baru"
+                            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #0f2d52, #5a8fd8)';">
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-card-date"><i class="fas fa-calendar"></i> 1 Desember 2024</div>
+                        <h4>Pembukaan Laboratorium Baru</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section - Contact & Announcement -->
+    <section class="footer-section">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Alamat</strong>
+                        <p>Jl. Soekarno Hatta No. 530, Sekejati, Buahbatu, Bandung, Jawa Barat 40286</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <a href="mailto:fakultasteknik@uninus.ac.id">fakultasteknik@uninus.ac.id</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Telepon</strong>
+                        <a href="tel:+62227579362">(022) 7579362</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Pengumuman</h3>
+                <div class="announcement-item">
+                    <div class="announcement-date"><i class="fas fa-calendar"></i> 20 Desember 2024</div>
+                    <h4>Pendaftaran Mahasiswa Baru 2025</h4>
+                    <p>Pendaftaran mahasiswa baru untuk tahun akademik 2025/2026 telah dibuka. Segera daftarkan diri
+                        Anda.</p>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-date"><i class="fas fa-calendar"></i> 18 Desember 2024</div>
+                    <h4>Seminar Teknologi 2024</h4>
+                    <p>Fakultas Teknik akan mengadakan seminar teknologi dengan tema "Inovasi Teknologi untuk Masa
+                        Depan".</p>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-date"><i class="fas fa-calendar"></i> 15 Desember 2024</div>
+                    <h4>Pengumuman Kelulusan</h4>
+                    <p>Pengumuman kelulusan semester ganjil 2024/2025 akan diumumkan pada tanggal 20 Desember 2024.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copyright Footer -->
+    <footer
+        style="background: #1c3f6e; padding: 20px 0; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <p>&copy; 2025 Fakultas Teknik UNINUS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script>
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Ensure index is within bounds
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            // Add active class to current slide and indicator
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-play carousel
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Initialize carousel
+        showSlide(0);
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.pmb-card, .news-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

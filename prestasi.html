@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestasi Mahasiswa - Teknik Elektro UNINUS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .navbar {
+            background: #0f2d52;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #5a8fd8;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #0f2d52 0%, #1c3f6e 100%);
+            color: white;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .page-content {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            /* 4:3 Aspect Ratio */
+            background: #ddd;
+            overflow: hidden;
+        }
+
+        .gallery-img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .achievement-title {
+            font-size: 1.1rem;
+            color: #0f2d52;
+            margin: 0 0 5px;
+            font-weight: 600;
+        }
+
+        .achievement-event {
+            font-size: 0.9rem;
+            color: #5a8fd8;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .achievement-date {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Placeholder styles */
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #888;
+            font-weight: bold;
+            border: 2px dashed #aaa;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #1c3f6e;
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-university"></i>
+                <span>Teknik Elektro UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Kembali ke Beranda</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="page-header">
+        <h1>Galeri Prestasi</h1>
+        <p>Jejak Langkah Kebanggaan Mahasiswa</p>
+    </header>
+    <section class="page-content">
+        <div class="gallery-grid">
+            <!-- Template Item 1 -->
+            <div class="gallery-item">
+                <div class="gallery-img-container">
+                    <!-- Replace src with actual image -->
+                    <div class="placeholder-text">FOTO PRESTASI</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="achievement-title">Juara 1 Lomba Robotika Nasional</h3>
+                    <div class="achievement-event">Kontes Robot Indonesia 2024</div>
+                    <div class="achievement-date">Bandung, Desember 2024</div>
+                </div>
+            </div>
+
+            <!-- Template Item 2 -->
+            <div class="gallery-item">
+                <div class="gallery-img-container">
+                    <div class="placeholder-text">FOTO PRESTASI</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="achievement-title">Medali Emas Inovasi IoT</h3>
+                    <div class="achievement-event">International Innovation Fair</div>
+                    <div class="achievement-date">Jakarta, November 2024</div>
+                </div>
+            </div>
+
+            <!-- Template Item 3 -->
+            <div class="gallery-item">
+                <div class="gallery-img-container">
+                    <div class="placeholder-text">FOTO PRESTASI</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="achievement-title">Best Paper Award</h3>
+                    <div class="achievement-event">Seminar Nasional Teknik Elektro</div>
+                    <div class="achievement-date">Yogyakarta, Oktober 2024</div>
+                </div>
+            </div>
+
+            <!-- Template Item 4 -->
+            <div class="gallery-item">
+                <div class="gallery-img-container">
+                    <div class="placeholder-text">FOTO PRESTASI</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="achievement-title">Juara 2 Debat Bahasa Inggris</h3>
+                    <div class="achievement-event">Varsity English Debate</div>
+                    <div class="achievement-date">Surabaya, September 2024</div>
+                </div>
+            </div>
+
+            <!-- Template Item 5 -->
+            <div class="gallery-item">
+                <div class="gallery-img-container">
+                    <div class="placeholder-text">FOTO PRESTASI</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="achievement-title">Juara Harapan 1 Programming</h3>
+                    <div class="achievement-event">Hackathon Jabar Juara</div>
+                    <div class="achievement-date">Bandung, Agustus 2024</div>
+                </div>
+            </div>
+
+            <!-- Template Item 6 -->
+            <div class="gallery-item">
+                <div class="gallery-img-container">
+                    <div class="placeholder-text">FOTO PRESTASI</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="achievement-title">Finalis Program Kreativitas Mahasiswa</h3>
+                    <div class="achievement-event">PIMNAS ke-37</div>
+                    <div class="achievement-date">Makassar, Juli 2024</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer>
+        <div class="container" style="justify-content: center;">
+            <p>&copy; 2025 Fakultas Teknik UNINUS. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HME UNINUS - Himpunan Mahasiswa Elektro Universitas Islam Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* HME Theme Override - Matching Faculty Gradient */
+        :root {
+            /* Override global variables for this page */
+            --primary-color: #0f2d52 !important;
+            /* Navy */
+            --secondary-color: #5a8fd8 !important;
+            /* Silver/Blue */
+            --accent-color: #e67e22 !important;
+            /* Orange Accent */
+            --dark-bg: #f8f9fa !important;
+            /* Light BG */
+            --dark-card: #ffffff !important;
+            /* White Card */
+            --text-light: #1a1a1a !important;
+            /* Dark Text */
+            --text-gray: #4c5d73 !important;
+            --gradient-3: linear-gradient(135deg, #0f2d52 0%, #5a8fd8 100%) !important;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        /* Navbar Update */
+        .navbar {
+            background: #0f2d52 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+        }
+
+        /* Hero Updates */
+        .hero {
+            background: linear-gradient(135deg, #0f2d52 0%, #1c3f6e 100%);
+            position: relative;
+        }
+
+        .hero-background {
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-text h1 {
+            background: linear-gradient(to right, #ffffff, #5a8fd8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle,
+        .description {
+            color: #e9eff7 !important;
+        }
+
+        /* Robot Animation Update */
+        .robot-head,
+        .robot-body,
+        .robot-arm {
+            background: #ffffff !important;
+            border-color: #5a8fd8 !important;
+        }
+
+        .robot-eye {
+            background: #e67e22 !important;
+            box-shadow: 0 0 10px #e67e22 !important;
+        }
+
+        /* Section Titles */
+        .section-title {
+            background: linear-gradient(135deg, #0f2d52, #5a8fd8) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Cards Update */
+        .history-text,
+        .history-box,
+        .profile-card,
+        .structure-card,
+        .activity-card,
+        .leader-item,
+        .department-card {
+            background: #ffffff !important;
+            color: #333 !important;
+            box-shadow: 0 10px 30px rgba(15, 45, 82, 0.08) !important;
+            border: 1px solid rgba(15, 45, 82, 0.05);
+        }
+
+        .history-box h4,
+        .profile-card h3,
+        .structure-header h3,
+        .activity-card h3,
+        .department-header h4 {
+            color: #0f2d52 !important;
+        }
+
+        .history-box ul,
+        .history-box ol,
+        .history-text p,
+        .profile-card p,
+        .activity-card p {
+            color: #4c5d73 !important;
+        }
+
+        /* Button Updates */
+        .period-tab {
+            background: #ffffff !important;
+            color: #4c5d73 !important;
+            border: 1px solid #ddd !important;
+        }
+
+        .period-tab.active,
+        .period-tab:hover {
+            background: #0f2d52 !important;
+            color: #ffffff !important;
+            border-color: #0f2d52 !important;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(180deg, #ffffff 0%, #f4f6fb 100%);
+        }
+
+        .social-link {
+            background: #ffffff !important;
+            color: #0f2d52 !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            background: #0f2d52 !important;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo-hme.png" alt="HME UNINUS Logo" class="nav-logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <i class="fas fa-microchip nav-logo-fallback" style="display: none;"></i>
+                <span>HME UNINUS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="fakultas.html" class="nav-link">Teknik Elektro</a></li>
+                <li><a href="hme.html" class="nav-link active">Beranda</a></li>
+                <li><a href="#history" class="nav-link">Sejarah</a></li>
+                <li><a href="#profile" class="nav-link">Profil</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="library.html" class="nav-link">Perpustakaan</a></li>
+                <li><a href="news.html" class="nav-link">HME News</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <canvas id="oscilloscope"></canvas>
+            <div class="circuit-pattern"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="glitch" data-text="HME UNINUS">HME UNINUS</h1>
+                <p class="subtitle">Himpunan Mahasiswa Elektro</p>
+                <p class="description">Universitas Islam Nusantara</p>
+                <div class="hero-buttons">
+                    <a href="#profile" class="btn btn-primary">Tentang Kami</a>
+                    <a href="#contact" class="btn btn-secondary">Hubungi Kami</a>
+                </div>
+            </div>
+            <div class="robot-animation">
+                <div class="robot">
+                    <div class="robot-head">
+                        <div class="robot-eye left"></div>
+                        <div class="robot-eye right"></div>
+                    </div>
+                    <div class="robot-body">
+                        <div class="robot-panel"></div>
+                    </div>
+                    <div class="robot-arm left"></div>
+                    <div class="robot-arm right"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="history-section">
+        <div class="container">
+            <div class="history-content">
+                <div class="history-header">
+                    <h2 class="section-title">Sejarah HME UNINUS</h2>
+                    <p class="greeting">Assalamualaikum Warohmatullahi Wabarokatuh</p>
+                </div>
+                <div class="history-text">
+                    <p>
+                        Sejarah <strong>Himpunan Mahasiswa Elektro (HME)</strong> didirikan pada tahun 1986. Himpunan
+                        Mahasiswa Elektro (HME) bermula bernama <strong>Himpunan Mahasiswa Teknik Elektro
+                            (HIMATEL)</strong>. Himpunan tersebut berdiri pada forum-forum diskusi beberapa Mahasiswa
+                        Teknik Elektro Universitas Islam Nusantara mengenai wadah aspirasi, pengembangan minat dan bakat
+                        Mahasiswa Teknik Elektro, dan sebagai fungsi menjalankan Tri dharma perguruan tinggi yakni dalam
+                        pendidikan, penelitian, dan pengabdian kepada masyarakat.
+                    </p>
+
+                    <div class="history-box">
+                        <h4>Tujuan HIMATEL</h4>
+                        <ul>
+                            <li>Menumbuhkan rasa kekeluargaan Mahasiswa Elektro</li>
+                            <li>Sebagai wadah aspirasi Mahasiswa Elektro</li>
+                            <li>Meningkatkan kualitas akademis Mahasiswa Elektro</li>
+                            <li>Pengabdian kepada masyarakat dibidang Teknik Elektro</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        Dalam sejarah himpunan, HIMATEL mengalami pasang surutnya organisasi yang itu merupakan hal
+                        dinamika berorganisasi. Namun dalam beberapa tahun HIMATEL mengalami vakum karena kurangnya
+                        sumber daya mahasiswa yang sedikit dan berdampak pada roda organisasi kurang berjalan dengan
+                        baik, sehingga HIMATEL merupakan bagian dari sejarah teknik elektro universitas islam nusantara.
+                    </p>
+
+                    <p>
+                        Sejarah mengatakan bahwa pada dasarnya HIMATEL bergerak di bidang akademik dan non akademik,
+                        sehingga nilai-nilai yang terkandung didalamnya mengarah pada tujuan HIMATEL itu sendiri, dan
+                        HIMATEL berperan aktif di ranah Prodi, Fakultas, Kampus dan kemasyarakatan. Dengan berperan
+                        aktif tersebut HIMATEL dianggap sebagai bagian dari kemajuan program Teknik elektro uninus.
+                    </p>
+
+                    <p>
+                        Pada pertengahan tahun 2017 lewat diskusi rutin yang diadakan oleh <strong>SENAT MAHASISWA
+                            FAKULTAS TEKNIK</strong> mengenai peran dan fungsi organisasi, dikarenakan pada saat itu ada
+                        hal urgensi dari pimpinan fakultas teknik untuk segera membentuk organisasi Himpunan mahasiswa
+                        Jurusan (HMJ), maka senat berinisiatif mengadakan survey terkait penting atau tidaknya membentuk
+                        sebuah himpunan mahasiswa jurusan (HMJ). Dalam hasil survey tersebut merujuk pada dibentuk atau
+                        didirikannya kembali Himpunan perjurusan yang dimana tujuan dan nilai-nilai dari sejarah tidak
+                        dihilangkan.
+                    </p>
+
+                    <p>
+                        Senat mahasiswa fakultas teknik membentuk tim perumus di masing-masing jurusan, yang dimana tim
+                        perumus himpunan di elektro diketuai oleh <strong>Abdul Latiep Azis (2014)</strong> dan anggota:
+                        <strong>Muhammad Zaini Ahmadilah (2016)</strong>, <strong>Ahmad Halim (2016)</strong>, dan
+                        <strong>Rahmat Hidayat (2017)</strong>. Pada dasarnya tim perumus terus berkoordinasi kepada
+                        ketua prodi dan alumni terkait pembentukan kembali Himpunan di jurusan elektro yang dimana
+                        menghasilkan sebuah persetujuan dari ketua jurusan dan alumni.
+                    </p>
+
+                    <p>
+                        Pada awal tahun 2018, tim perumus berhasil merancang <strong>Aturan Dasar (AD)</strong>,
+                        <strong>Aturan Rumah Tangga (ART)</strong> dan kelengkapan organisasi untuk Himpunan jurusan.
+                        Sehingga pada tanggal <strong>2 April 2018</strong> dilaksanakan Musyawarah besar Himpunan dan
+                        pada saat itulah terbentuknya <strong>HIMPUNAN MAHASISWA ELEKTRO</strong> dengan akronim
+                        <strong>HME</strong> Surat Keputusan Nomor: <strong>020/D/SEMAF-TEK/UNINUS/V/2018</strong>.
+                    </p>
+
+                    <p>
+                        Struktur organisasi di Himpunan mahasiswa elektro (HME) terdiri dari Ketua, Wakil Ketua,
+                        Sekretaris, Bendahara, dan ketua-ketua Departemen. Lebih jelasnya terdapat pada AD-ART.
+                    </p>
+
+                    <p>
+                        Perjalanan Himpunan mahasiswa elektro (HME) dalam dua tahun terakhir memiliki banyak tantangan
+                        dan rintangan, dimulai dari SDM yang tidak banyak, pendanaan masih tiap masing-masing anggota,
+                        dan banyak lagi pro kontranya, sehingga dalam pembentukan pondasi HME bekerja sama &
+                        bergandengan tangan dengan <strong>Forum Komunikasi Himpunan Mahasiswa Elektro Indonesia
+                            (FKHMEI) Wilayah VII</strong> dimana setiap persoalan kita lalui bersama.
+                    </p>
+
+                    <div class="history-box">
+                        <h4>Agenda Kegiatan HME</h4>
+                        <ol>
+                            <li>Musyawarah Besar HME</li>
+                            <li>Pengesahan Himpunan Mahasiswa Elektro (HME) Pelantikan Kepengurusan HME periode
+                                2018-2019</li>
+                            <li>Rapat kerja HME</li>
+                            <li>Diskusi keilmuan Elektro (Rutin)</li>
+                            <li>Kelompok Belajar (Rutin)</li>
+                            <li>Pekan Olahraga Tingkat Jawa barat bersama FKHMEI Wilayah VII</li>
+                            <li>Pengabdian kepada masyarakat bersama FKHMEI Wilayah VII</li>
+                        </ol>
+                    </div>
+
+                    <div class="history-box">
+                        <h4>Daftar Nama Ketua Himpunan Mahasiswa Elektro Setelah Dibentuk Kembali</h4>
+                        <ol>
+                            <li><strong>Muhammad Zaini Ahmadilah</strong> (Periode: 2018-2019)</li>
+                            <li><strong>Cep Riffi Abdul Wahid</strong> (Periode: 2019-2020)</li>
+                            <li><strong>Alfath Nur Assajjad</strong> (Periode: 2020-2021)</li>
+                            <li><strong>Rizal Mi'raz</strong> (Periode: 2021-2022)</li>
+                        </ol>
+                    </div>
+
+                    <p>
+                        Demikian uraian ringkas terkait sejarah organisasi tertinggi tingkat Jurusan Elektro (Prodi
+                        teknik Elektro) yaitu <strong>Himpunan Mahasiswa Elektro (HME)</strong>. Diharapkan menjadi
+                        sebuah motivasi bagi kawan-kawan mahasiswa teknik elektro untuk terus berproses, berkembang, dan
+                        sukses dalam menjalankan roda organisasi Himpunan Mahasiswa Elektro (HME) Prodi Teknik Elektro
+                        Fakultas Teknik Universitas Islam Nusantara.
+                    </p>
+
+                    <p class="greeting" style="margin-top: 2rem; font-weight: 600;">
+                        Wassalamualaikum Warrohmatullohi Wabarokatuh
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="profile-section">
+        <div class="container">
+            <h2 class="section-title">Profil HME UNINUS</h2>
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <i class="fas fa-bullseye card-icon"></i>
+                    <h3>Visi</h3>
+                    <p>Membangun karater dengan semangat bermusyawarah melalui ilmu pengetahuan, etika dan keahlian
+                        dalam bidang teknologi.</p>
+                </div>
+                <div class="profile-card">
+                    <i class="fas fa-tasks card-icon"></i>
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Membentuk mahasiswa yang bertaqwa kepada Tuhan Yang Maha Esa.</li>
+                        <li>Membentuk karakter setiap anggota yang kreatif, inovatif, unggul, berwawasan luas, dan
+                            bertanggung jawab.</li>
+                        <li>Mengembangkan potensi dalam diri setiap anggota humpunan baik dalam hal hardskill maupun
+                            softskill.</li>
+                        <li>Membangun sifat kekeluargaan demi mencapai tujuan yang sama dan menghargai perbedaan.</li>
+                    </ul>
+                </div>
+                <div class="profile-card">
+                    <i class="fas fa-flag card-icon"></i>
+                    <h3>Tujuan</h3>
+                    <ul>
+                        <li>Membentuk mahasiswa yang bertaqwa kepada Tuhan Yang Maha Esa.</li>
+                        <li>Turut mempersiapkan terbentuknya sarjana-sarjana teknik elektro yang sadar akan tanggung
+                            jawabnya terhadap Tuhan Yang Maha Esa, Bangsa, dan Almamater.</li>
+                        <li>Membentuk anggota yang kreatif, inovatif, berwawasan luas, dan berbudi pekerti luhur.</li>
+                        <li>Memelihara dan mempererat rasa kekeluargaan diantara anggota HME UNINUS maupun alumni teknik
+                            elektro UNINUS pada khususnya serta keluarga besar mahasiswa UNINUS pada umumnya.</li>
+                        <li>Ikut membatu memenuhi kebutuhan material dan spiritual mahasiswa teknik elektro khususnya
+                            dan mahasiswa UNINUS umumnya dalam menyalurkan cipta, karya, tenaga dan pembangunan Republik
+                            Indonesia.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section class="structure-section">
+        <div class="container">
+            <h2 class="section-title">Struktur Organisasi</h2>
+            <div class="period-tabs">
+                <button class="period-tab" data-period="2018-2019">Periode 2018-2019</button>
+                <button class="period-tab" data-period="2019-2020">Periode 2019-2020</button>
+                <button class="period-tab" data-period="2020-2021">Periode 2020-2021</button>
+                <button class="period-tab active" data-period="2021-2022">Periode 2021-2022</button>
+                <button class="period-tab" data-period="2022-2023">Periode 2022-2023</button>
+                <button class="period-tab" data-period="2024-2025">Periode 2024-2025</button>
+                <button class="period-tab" data-period="2025-2026">Periode 2025-2026</button>
+            </div>
+            <div class="period-content">
+                <!-- Periode 2018-2019 -->
+                <div class="period-panel" data-period="2018-2019" style="display: none;">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2018-2019</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">Muhammad Zaini Ahmadilah</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">[Nama Wakil]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">[Nama Sekretaris]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">[Nama Bendahara]</div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-book"></i>
+                                    <h4>Departemen Akademik</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Ditetapkan di:</strong> Bandung</p>
+                            <p><strong>Pada tanggal:</strong> 2 April 2018</p>
+                            <p style="margin-top: 1rem;"><strong>Surat Keputusan:</strong> Nomor:
+                                020/D/SEMAF-TEK/UNINUS/V/2018</p>
+                            <p style="margin-top: 1rem;"><strong>Catatan:</strong> Periode pertama setelah pembentukan
+                                kembali HME UNINUS.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Periode 2019-2020 -->
+                <div class="period-panel" data-period="2019-2020" style="display: none;">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2019-2020</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">Cep Riffi Abdul Wahid</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">[Nama Wakil]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">[Nama Sekretaris]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">[Nama Bendahara]</div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-book"></i>
+                                    <h4>Departemen Akademik</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Catatan:</strong> Struktur organisasi dapat berubah sesuai dengan kebutuhan dan
+                                perkembangan organisasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Periode 2020-2021 -->
+                <div class="period-panel" data-period="2020-2021" style="display: none;">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2020-2021</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">Alfath Nur Assajjad</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">[Nama Wakil]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">[Nama Sekretaris]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">[Nama Bendahara]</div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-book"></i>
+                                    <h4>Departemen Akademik</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Catatan:</strong> Struktur organisasi dapat berubah sesuai dengan kebutuhan dan
+                                perkembangan organisasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Periode 2021-2022 -->
+                <div class="period-panel active" data-period="2021-2022">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2021-2022</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">Rizal Mi'raz</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">Vieska Pradita Utami</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">Imam Arief Rahman</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">Sarah Putri Purnama</div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-flask"></i>
+                                    <h4>Departemen Peneliti dan Pengembangan Potensi</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> Hamdi Sholahudin
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>Ikbal Nurfalah</li>
+                                        <li>Euman Suratman</li>
+                                        <li>M Rijal budiman</li>
+                                        <li>Ade Irma Wantini</li>
+                                        <li>Alvito nauval</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-users"></i>
+                                    <h4>Departemen Pemberdaya Organisasi</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> M Jari Nurman S
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>Fikrul Haikal J</li>
+                                        <li>Teguh Teuja Laksana</li>
+                                        <li>Muhammad Cikal Putra Karisma</li>
+                                        <li>Nurjana</li>
+                                        <li>Ishak Abdul Rojak</li>
+                                        <li>Kakang Nur Wahid</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-handshake"></i>
+                                    <h4>Departemen Humas</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> Muhammad Aditiya Firdaus
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>Irdi Pratama Putra</li>
+                                        <li>Dicky Wanhar</li>
+                                        <li>Asep yanto</li>
+                                        <li>Erfin robiatul</li>
+                                        <li>Dede Mukhsin A</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-mosque"></i>
+                                    <h4>Departemen Keagamaan</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> Sandi Fadilah
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>Yandi Setia Permadi</li>
+                                        <li>Agil Abdul G</li>
+                                        <li>Ahmad muhajir</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Ditetapkan di:</strong> Bandung</p>
+                            <p><strong>Pada tanggal:</strong> 14 Oktober 2021</p>
+                            <p style="margin-top: 1rem;"><strong>Ketua Umum Senat Mahasiswa Fakultas Teknik:</strong> M.
+                                Ilham Nasirul Haq</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Periode 2022-2023 -->
+                <div class="period-panel" data-period="2022-2023" style="display: none;">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2022-2023</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">[Nama Ketua]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">[Nama Wakil]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">[Nama Sekretaris]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">[Nama Bendahara]</div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-book"></i>
+                                    <h4>Departemen Akademik</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Catatan:</strong> Struktur organisasi dapat berubah sesuai dengan kebutuhan dan
+                                perkembangan organisasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Periode 2024-2025 -->
+                <div class="period-panel" data-period="2024-2025" style="display: none;">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2024-2025</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">[Nama Ketua]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">[Nama Wakil]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">[Nama Sekretaris]</div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">[Nama Bendahara]</div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-book"></i>
+                                    <h4>Departemen Akademik</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-users"></i>
+                                    <h4>Departemen Organisasi</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-handshake"></i>
+                                    <h4>Departemen Hubungan Masyarakat</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Ketua:</strong> [Nama Ketua Departemen]
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota:</strong>
+                                    <ul>
+                                        <li>[Nama Anggota 1]</li>
+                                        <li>[Nama Anggota 2]</li>
+                                        <li>[Nama Anggota 3]</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Catatan:</strong> Struktur organisasi dapat berubah sesuai dengan kebutuhan dan
+                                perkembangan organisasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Periode 2025-2026 -->
+                <div class="period-panel" data-period="2025-2026" style="display: none;">
+                    <div class="structure-card">
+                        <div class="structure-header">
+                            <h3>HME UNINUS</h3>
+                            <h4>Periode 2025-2026</h4>
+                            <h5>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</h5>
+                        </div>
+                        <div class="leadership-structure">
+                            <div class="leadership-item">
+                                <div class="leadership-label">Ketua Umum</div>
+                                <div class="leadership-name">Ahmad Syamsul Falah<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241015</small>
+                                </div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Wakil Ketua</div>
+                                <div class="leadership-name">Muhammad Syarip Hidayatuloh<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241027</small>
+                                </div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Sekretaris</div>
+                                <div class="leadership-name">Kelvin Purnama Rabbani<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241010</small>
+                                </div>
+                            </div>
+                            <div class="leadership-item">
+                                <div class="leadership-label">Bendahara</div>
+                                <div class="leadership-name">Rida Firli<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241022</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="departments">
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-users"></i>
+                                    <h4>Pengembangan Sumber Daya Mahasiswa (PSDM)</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> Suherlan Afrizal<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241023</small>
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota Departemen:</strong>
+                                    <ul>
+                                        <li>Gisna Nizar Fahrezi<br><small
+                                                style="font-size: 0.85rem; color: var(--text-gray);">41037002241003</small>
+                                        </li>
+                                        <li>Rival Muzzakiy Yustiansyah<br><small
+                                                style="font-size: 0.85rem; color: var(--text-gray);">41037002241013</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-flask"></i>
+                                    <h4>Pendidikan, Penelitian, dan Pengembangan (PELITBANG)</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> Rizan Reynaldiansyah<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241009</small>
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota Departemen:</strong>
+                                    <ul>
+                                        <li>Wahyu Nur Rizki<br><small
+                                                style="font-size: 0.85rem; color: var(--text-gray);">41037002241005</small>
+                                        </li>
+                                        <li>Aditya Laksono Putro<br><small
+                                                style="font-size: 0.85rem; color: var(--text-gray);">41037002241026</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="department-card">
+                                <div class="department-header">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <h4>Komunikasi dan Informasi (KOMINFO)</h4>
+                                </div>
+                                <div class="department-leader">
+                                    <strong>Kepala Departemen:</strong> Rizqi Maulana Abdul Aziz<br><small
+                                        style="font-size: 0.85rem; color: var(--text-gray);">41037002241021</small>
+                                </div>
+                                <div class="department-members">
+                                    <strong>Anggota Departemen:</strong>
+                                    <ul>
+                                        <li>Ridho Amansyah<br><small
+                                                style="font-size: 0.85rem; color: var(--text-gray);">41037002241001</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-footer">
+                            <p><strong>Ditetapkan di:</strong> Bandung</p>
+                            <p><strong>Pada tanggal:</strong> 24 November 2025</p>
+                            <p style="margin-top: 1rem;"><strong>Ketua Umum Senat Mahasiswa Fakultas Teknik:</strong>
+                                Muhammad Ali Guty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Tentang HME UNINUS</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Himpunan Mahasiswa Elektro UNINUS</h3>
+                    <p>
+                        HME UNINUS adalah organisasi kemahasiswaan yang mewadahi mahasiswa Program Studi Teknik Elektro
+                        Universitas Islam Nusantara. Organisasi ini berkomitmen untuk mengembangkan potensi mahasiswa
+                        dalam berbagai aspek, baik akademik maupun non-akademik.
+                    </p>
+                    <p>
+                        Melalui berbagai program dan kegiatan, HME UNINUS berusaha menciptakan lingkungan yang kondusif
+                        bagi pengembangan diri mahasiswa, membangun karakter kepemimpinan, dan meningkatkan kompetensi
+                        di bidang teknik elektro.
+                    </p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="100">0</div>
+                            <div class="stat-label">Anggota Aktif</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="50">0</div>
+                            <div class="stat-label">Kegiatan/Tahun</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="10">0</div>
+                            <div class="stat-label">Tahun Berdiri</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="iot-devices">
+                    <div class="device device-1">
+                        <i class="fas fa-microchip"></i>
+                        <span>Embedded</span>
+                    </div>
+                    <div class="device device-2">
+                        <i class="fas fa-bolt"></i>
+                        <span>Power</span>
+                    </div>
+                    <div class="device device-3">
+                        <i class="fas fa-wifi"></i>
+                        <span>IoT</span>
+                    </div>
+                    <div class="device device-4">
+                        <i class="fas fa-robot"></i>
+                        <span>Robotics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities-section">
+        <div class="container">
+            <h2 class="section-title">Kegiatan HME UNINUS</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <i class="fas fa-graduation-cap activity-icon"></i>
+                    <h3>Seminar & Workshop</h3>
+                    <p>Kegiatan seminar dan workshop dengan menghadirkan praktisi industri dan akademisi untuk sharing
+                        knowledge dan pengembangan kompetensi.</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-trophy activity-icon"></i>
+                    <h3>Kompetisi</h3>
+                    <p>Mengikuti berbagai kompetisi nasional dan internasional di bidang teknik elektro untuk mengasah
+                        kemampuan dan prestasi mahasiswa.</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-microscope activity-icon"></i>
+                    <h3>Praktikum</h3>
+                    <p>Kegiatan praktikum rutin di berbagai laboratorium untuk memperkuat pemahaman teoritis dengan
+                        praktik langsung.</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-handshake activity-icon"></i>
+                    <h3>Pengabdian Masyarakat</h3>
+                    <p>Program pengabdian kepada masyarakat yang melibatkan dosen dan mahasiswa untuk memberikan
+                        kontribusi nyata.</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-users activity-icon"></i>
+                    <h3>Kunjungan Industri</h3>
+                    <p>Kunjungan ke berbagai industri untuk memberikan pengalaman langsung tentang dunia kerja
+                        profesional.</p>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-calendar-alt activity-icon"></i>
+                    <h3>Event Organisasi</h3>
+                    <p>Menyelenggarakan berbagai event organisasi untuk meningkatkan solidaritas dan pengembangan
+                        karakter kepemimpinan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-content">
+                <div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.8rem;">Media Sosial</h3>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@hmeuninus" target="_blank" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@hmeuninus" target="_blank" class="social-link tiktok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                        <a href="https://www.facebook.com/hmeuninusbandung" target="_blank"
+                            class="social-link facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/hmeuninus?igsh=MTFjbnpsbWpuNzZnOA==" target="_blank"
+                            class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Himpunan Mahasiswa Teknik Elektro<br>Fakultas Teknik<br>Universitas Islam
+                                Nusantara<br>Jl. Soekarno – Hatta No. 530 Kota Bandung</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:hmeuninus@gmail.com">hmeuninus@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>083871307675(Kahim Elektro) | 085795699233(Divisi Kominfo)</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.8rem;">Kirim Pesan</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subjek" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Pesan Anda" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HME UNINUS</h3>
+                    <p>Himpunan Mahasiswa Elektro Universitas Islam Nusantara</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Teknik Elektro</a></li>
+                        <li><a href="hme.html">Beranda</a></li>
+                        <li><a href="hme.html#history">Sejarah</a></li>
+                        <li><a href="hme.html#profile">Profil</a></li>
+                        <li><a href="hme.html#about">Tentang</a></li>
+                        <li><a href="library.html">Perpustakaan</a></li>
+                        <li><a href="news.html">HME News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="footer-social">
+                        <a href="https://www.youtube.com/@hmeuninus" target="_blank" title="HME UNINUS"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@hmeuninus" target="_blank" title="HME UNINUS"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/hmeuninusbandung" target="_blank"
+                            title="HME UNINUS BANDUNG"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/hmeuninus?igsh=MTFjbnpsbWpuNzZnOA==" target="_blank"
+                            title="HME UNINUS"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HME UNINUS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+
+</html>
